@@ -1,9 +1,8 @@
 import {BookCard} from '../../bookcard'
-import { FC } from 'react'
 import { useBookList } from '../../../shared/hooks/use-book-list'
 import { IBook } from '../../../shared/types/book'
 
-export const BookGrid: FC = () => {
+export const BookGrid = () => {
     const { books,  error } = useBookList()
 
     if (error) return <div>Ошибка: {error}</div>
