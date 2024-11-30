@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react'
 import { api } from '../api/axios'
 import { IBook, IBookListResponse } from '../types/book'
+import {useLoading} from './use-loading'
 
 interface UseBookListReturn {
     books: IBook[]
-    loading: boolean
     error: string | null
     refetch: () => Promise<void>
 }
 
 export const useBookList = (): UseBookListReturn => {
     const [books, setBooks] = useState<IBook[]>([])
-    const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<string | null>(null)
+    const setLoading = useLoading((state) => state.setLoading)
 
     const fetchBooks = async (): Promise<void> => {
         try {
+            setLoading(true)
             const response = await api.get<IBookListResponse>('/books')
             setBooks(response.data.payload)
         } catch (err) {
@@ -29,5 +30,5 @@ export const useBookList = (): UseBookListReturn => {
         fetchBooks()
     }, [])
 
-    return { books, loading, error, refetch: fetchBooks }
+    return { books, error, refetch: fetchBooks }
 }
