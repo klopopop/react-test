@@ -1,10 +1,10 @@
 import { BrowserRouter } from 'react-router-dom'
-import { Layout } from '../widgets/layout'
+import { Routing } from '../pages/'
 
 function App() {
     return (
         <BrowserRouter>
-            <Layout />
+            <Routing />
         </BrowserRouter>
     )
 }
