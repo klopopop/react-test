@@ -7,14 +7,14 @@ export const BookDetails: FC = () => {
 
     if (!id) return <div>ID not found</div>
     
-    const { book, loading, error } = useBook({ id })
+    const { book, error } = useBook({ id })
 
-    if (loading) return <div>Загрузка...</div>
     if (error) return <div>Ошибка: {error}</div>
 
     if (!book) return <div>Book not found</div>
     
     return (
+        <div  className="animate-fadeInUp">
         <div className="max-w-7xl mx-auto p-6">
             <div className="flex gap-8">
                 {/* Левая колонка с обложкой */}
@@ -47,6 +47,7 @@ export const BookDetails: FC = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }
