@@ -1,11 +1,12 @@
 import { Header } from '../../header'
-import { BookGrid } from '../../bookgrid'
+import { Outlet } from 'react-router-dom'
+
 export const Layout = () => {
     return (
         <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-1 p-5">
-                <BookGrid />
+                <Outlet />
             </main>
         </div>
     )

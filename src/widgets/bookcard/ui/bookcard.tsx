@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom'
 import {BookCardProps} from '../../../entities/types'
 
-export const BookCard = ({ title, author, coverUrl }: BookCardProps) => {
+export const BookCard = ({ id, title, author, coverUrl }: BookCardProps) => {
     return (
+        <Link to = {`/book/${id}`}>
         <div className="group relative w-45 mx-auto">
             <div className="aspect-[2/3] rounded-lg shadow-lg overflow-hidden transform transition hover:-translate-y-2">
                 <img
@@ -15,5 +17,6 @@ export const BookCard = ({ title, author, coverUrl }: BookCardProps) => {
                 <p className="text-xs text-gray-600">{author}</p>
             </div>
         </div>
+        </Link>
     )
 }
