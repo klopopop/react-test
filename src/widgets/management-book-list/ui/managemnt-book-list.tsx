@@ -2,9 +2,11 @@ import {useBookList} from '../../../shared/hooks/use-book-list'
 import {IBook} from '../../../shared/types/book'
 import {useState} from 'react';
 import {ConfirmModal} from '../../../shared/ui/confitm-modal';
+import {useErrorStore} from '../../../shared/store/error-store'
 
 export const ManagementBookList = () => {
     const [deleteId, setDeleteId] = useState<number | null>(null);
+    const showError = useErrorStore(state => state.showError)
 
     const {books, error} = useBookList()
     const handleEdit = (id: number) => {
@@ -23,8 +25,7 @@ export const ManagementBookList = () => {
         setDeleteId(null);
     };
 
-    if (error) return <div>Ошибка: {error}</div>
-
+    if (error) showError('Произошла ошибка при загрузке книг')
     return (
         <>
             <div className="relative overflow-x-auto">

@@ -1,10 +1,13 @@
 import {Layout} from '../widgets/layout'
-import { BrowserRouter } from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
+import  {WithError} from '../app/providers/with-error'
 
 function App() {
     return (
         <BrowserRouter>
-            <Layout/>
+            <WithError>
+                <Layout/>
+            </WithError>
         </BrowserRouter>
     )
 }
