@@ -1,10 +1,10 @@
 import {BookCard} from '../../bookcard'
 import { FC } from 'react'
-import { useBooks } from '../../../shared/hooks/use-books'
+import { useBookList } from '../../../shared/hooks/use-book-list'
 import { IBook } from '../../../shared/types/book'
 
 export const BookGrid: FC = () => {
-    const { books, loading, error } = useBooks()
+    const { books, loading, error } = useBookList()
 
     if (loading) return <div>Загрузка...</div>
     if (error) return <div>Ошибка: {error}</div>

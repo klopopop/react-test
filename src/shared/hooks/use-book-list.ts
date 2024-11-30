@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react'
 import { api } from '../api/axios'
-import { IBook, IBookResponse } from '../types/book'
+import { IBook, IBookListResponse } from '../types/book'
 
-interface UseBookReturn {
+interface UseBookListReturn {
     books: IBook[]
     loading: boolean
     error: string | null
     refetch: () => Promise<void>
 }
 
-export const useBooks = (): UseBookReturn => {
+export const useBookList = (): UseBookListReturn => {
     const [books, setBooks] = useState<IBook[]>([])
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<string | null>(null)
 
     const fetchBooks = async (): Promise<void> => {
         try {
-            const response = await api.get<IBookResponse>('/books')
+            const response = await api.get<IBookListResponse>('/books')
             setBooks(response.data.payload)
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Unknown error occurred')

@@ -6,5 +6,9 @@ export interface IBook {
 }
 
 export interface IBookResponse {
+    payload: IBook
+}
+
+export interface IBookListResponse {
     payload: IBook[]
 }

@@ -1,4 +1,19 @@
-export const BookDetails = () => {
+import {FC} from "react";
+import {useBook} from '../../../shared/hooks/use-book'
+import { useParams } from 'react-router-dom'
+
+export const BookDetails: FC = () => {
+    const { id } = useParams<{ id: string }>()
+
+    if (!id) return <div>ID not found</div>
+    
+    const { book, loading, error } = useBook({ id })
+
+    if (loading) return <div>Загрузка...</div>
+    if (error) return <div>Ошибка: {error}</div>
+
+    if (!book) return <div>Book not found</div>
+    
     return (
         <div className="max-w-7xl mx-auto p-6">
             <div className="flex gap-8">
@@ -6,7 +21,7 @@ export const BookDetails = () => {
                 <div className="w-1/3">
                     <div className="aspect-[2/3] rounded-lg shadow-lg overflow-hidden">
                         <img
-                            src="https://picsum.photos/400/600"
+                            src={book.coverUrl}
                             alt="Book cover"
                             className="w-full h-full object-cover"
                         />
@@ -15,11 +30,11 @@ export const BookDetails = () => {
 
                 {/* Правая колонка с информацией */}
                 <div className="w-2/3">
-                    <h1 className="text-3xl font-bold mb-4">Название книги</h1>
+                    <h1 className="text-3xl font-bold mb-4">{book.title}</h1>
                     <div className="space-y-4">
-                        <p className="text-xl text-gray-600">Автор: Имя Автора</p>
-                        <p className="text-gray-700">Жанр: Фантастика</p>
-                        <p className="text-gray-700">Год издания: 2023</p>
+                        <p className="text-xl text-gray-600">Автор: {book.author}</p>
+                        <p className="text-gray-700">Жанр: </p>
+                        <p className="text-gray-700">Год издания:</p>
                         <div className="mt-6">
                             <h2 className="text-xl font-semibold mb-2">Описание</h2>
                             <p className="text-gray-600 leading-relaxed">
